@@ -6,7 +6,7 @@ function Header() {
     <header class='shadow-md font-sans tracking-wide relative z-50'>
     <section class='py-2 bg-[#007bff] text-white text-right px-10'>
       <p class='text-sm'><strong class="mx-3">Address:</strong>SOMALI<strong class="mx-3">Contact
-          No:</strong>61345678</p>
+          No:</strong>6187990</p>
     </section>
   
     <div class='flex flex-wrap items-center justify-between gap-4 px-10 py-4 bg-white min-h-[70px]'>
