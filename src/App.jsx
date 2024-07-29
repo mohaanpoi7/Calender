@@ -5,18 +5,21 @@ import About from './component/About';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
+// Initial list of events (commented out for now)
 const initialEvents = [
   // { id: 1, date: 'July 22, 2024', time: '00:00', title: '' },
   // { id: 2, date: 'July 24, 2024', time: '00:00', title: 'lol' },
   // { id: 3, date: 'August 3, 2024', time: '03:03', title: 'aroosa' },
 ];
 
+// List of month names
 const months = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
 function Calendar() {
+  // State hooks for managing events, new event input, editing event, selected date, current month, and current year
   const [events, setEvents] = useState(initialEvents);
   const [newEvent, setNewEvent] = useState({ date: '', time: '', title: '' });
   const [editEvent, setEditEvent] = useState(null);
@@ -24,7 +27,7 @@ function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Load events from local storage
+  // Load events from local storage on component mount
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('events'));
     if (storedEvents) {
@@ -32,11 +35,12 @@ function Calendar() {
     }
   }, []);
 
-  // Save events to local storage
+  // Save events to local storage whenever the events state changes
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
 
+  // Add a new event
   const handleAddEvent = () => {
     if (newEvent.date && newEvent.time && newEvent.title) {
       setEvents([...events, { ...newEvent, id: Date.now() }]);
@@ -44,25 +48,30 @@ function Calendar() {
     }
   };
 
+  // Edit an existing event
   const handleEditEvent = (event) => {
     setEditEvent(event);
   };
 
+  // Save the edited event
   const handleSaveEdit = () => {
     setEvents(events.map(event => (event.id === editEvent.id ? editEvent : event)));
     setEditEvent(null);
   };
 
+  // Delete an event
   const handleDeleteEvent = (id) => {
     setEvents(events.filter(event => event.id !== id));
   };
 
+  // Select a date from the calendar
   const handleSelectDate = (date) => {
     const monthYear = `${months[currentMonth]}, ${currentYear}`;
     setNewEvent({ ...newEvent, date: `${monthYear} ${date}` });
     setSelectedDate(date);
   };
 
+  // Navigate to the next month
   const handleNextMonth = () => {
     if (currentMonth === 11) {
       setCurrentMonth(0);
@@ -72,6 +81,7 @@ function Calendar() {
     }
   };
 
+  // Navigate to the previous month
   const handlePrevMonth = () => {
     if (currentMonth === 0) {
       setCurrentMonth(11);
