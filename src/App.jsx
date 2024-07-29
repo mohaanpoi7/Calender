@@ -58,8 +58,8 @@ function Calendar() {
   };
 
   const handleSelectDate = (date) => {
-    const monthYear = ${months[currentMonth]}, ${currentYear};
-    setNewEvent({ ...newEvent, date: ${monthYear} ${date} });
+    const monthYear = `${months[currentMonth]}, ${currentYear}`;
+    setNewEvent({ ...newEvent, date: `${monthYear} ${date}` });
     setSelectedDate(date);
   };
 
@@ -189,7 +189,7 @@ function Calendar() {
       </div>
     </div>
   );
-}
+};
 
 function App() {
   return (

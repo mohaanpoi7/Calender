@@ -15,7 +15,7 @@ function DateSelector({ selectedDate, onSelectDate, month, year }) {
         return (
           <div
             key={i}
-            className={py-1 cursor-pointer rounded-md ${isSelected ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-400'}}
+            className={`py-1 cursor-pointer rounded-md ${isSelected ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-400'}`}
             onClick={() => onSelectDate(date)}
           >
             {date}
@@ -27,3 +27,4 @@ function DateSelector({ selectedDate, onSelectDate, month, year }) {
 }
 
 export default DateSelector;
+
